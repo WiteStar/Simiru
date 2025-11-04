@@ -139,7 +139,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="Simiru.qrc" />
-    <QtUic Include="Simiru.ui" />
     <QtMoc Include="Simiru.h" />
     <ClCompile Include="Simiru.cpp" />
     <ClCompile Include="main.cpp" />

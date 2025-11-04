@@ -2,9 +2,8 @@
 #include "Simiru.h"
 
 Simiru::Simiru(QWidget *parent)
-    : QMainWindow(parent)
+    : ElaWindow(parent)
 {
-    ui.setupUi(this);
 }
 
 Simiru::~Simiru()
