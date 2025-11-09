@@ -4,12 +4,12 @@
 
 #include "ElaApplication.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    QApplication app(argc, argv);
-    eApp->init();
+	QApplication app(argc, argv);
+	eApp->init();
 
-    Simiru window;
-    window.show();
-    return app.exec();
+	Simiru window;
+	window.show();
+	return app.exec();
 }

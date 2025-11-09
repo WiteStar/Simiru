@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="Simiru">
+    <qresource prefix="/">
+        <file>Resource/Simiru.png</file>
     </qresource>
 </RCC>
