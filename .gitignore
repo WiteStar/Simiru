@@ -35,6 +35,7 @@ bld/
 
 !/ElaWidgetTools/Debug/
 !/ElaWidgetTools/Release/
+!Simiru.vcxproj.user
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
