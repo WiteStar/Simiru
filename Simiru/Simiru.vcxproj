@@ -140,8 +140,10 @@
   <ItemGroup>
     <QtRcc Include="Simiru.qrc" />
     <QtMoc Include="Simiru.h" />
+    <ClCompile Include="Pages\PageBase.cpp" />
     <ClCompile Include="Simiru.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtMoc Include="Pages\PageBase.h" />
     <ClInclude Include="stdafx.h" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">Create</PrecompiledHeader>

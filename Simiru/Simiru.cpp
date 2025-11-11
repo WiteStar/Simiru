@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "Simiru.h"
 
+#include "ElaToolButton.h"
+#include "ElaSuggestBox.h"
+#include "ElaNavigationRouter.h"
+
 Simiru::Simiru(QWidget* parent)
 	: ElaWindow(parent)
 {
@@ -15,9 +19,45 @@ Simiru::~Simiru()
 
 void Simiru::initWindow()
 {
-	setUserInfoCardPixmap(QPixmap(":/Resource/Simiru.png"));
 	setUserInfoCardTitle("Simiru");
 	setUserInfoCardSubTitle("An exntendable toolbox");
+	setUserInfoCardPixmap(QPixmap(":/Resource/Simiru.png"));
+
+	//================================ Set Central Widget Head ================================//
+	ElaToolButton* leftButton = new ElaToolButton(this);
+	leftButton->setElaIcon(ElaIconType::AngleLeft);	leftButton->setEnabled(false);
+	connect(leftButton, &ElaToolButton::clicked, []() { ElaNavigationRouter::getInstance()->navigationRouteBack(); });
+
+	ElaToolButton* rightButton = new ElaToolButton(this);
+	rightButton->setElaIcon(ElaIconType::AngleRight); rightButton->setEnabled(false);
+	connect(rightButton, &ElaToolButton::clicked, []() { ElaNavigationRouter::getInstance()->navigationRouteForward(); });
+
+	connect(ElaNavigationRouter::getInstance(), &ElaNavigationRouter::navigationRouterStateChanged,
+		[leftButton, rightButton](ElaNavigationRouterType::RouteMode routeMode)
+		{
+			switch (routeMode)
+			{
+			case ElaNavigationRouterType::BackValid: leftButton->setEnabled(true); break;
+			case ElaNavigationRouterType::BackInvalid: leftButton->setEnabled(false); break;
+			case ElaNavigationRouterType::ForwardValid: rightButton->setEnabled(true); break;
+			case ElaNavigationRouterType::ForwardInvalid: rightButton->setEnabled(false); break;
+			}
+		}
+	);
+
+	ElaSuggestBox* searchWidget = new ElaSuggestBox(this);
+	searchWidget->setPlaceholderText("Search");
+	searchWidget->setFixedHeight(32);
+
+	QWidget* headWidget = new QWidget(this);
+	QHBoxLayout* headLayout = new QHBoxLayout(headWidget);
+	headLayout->setContentsMargins(13, 15, 13, 6);
+	headLayout->addWidget(leftButton);
+	headLayout->addWidget(rightButton);
+	headLayout->addWidget(searchWidget);
+	headLayout->addStretch();
+	setCentralCustomWidget(headWidget);
+	//================================ Set Central Widget Head ================================//
 }
 
 void Simiru::initEdgeLayout()
@@ -26,4 +66,6 @@ void Simiru::initEdgeLayout()
 
 void Simiru::initContent()
 {
+	base = new PageBase("TEST", "test", this);
+	addPageNode("HOME", base, ElaIconType::House);
 }

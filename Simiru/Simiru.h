@@ -5,6 +5,8 @@
 #include "ElaWindow.h"
 #include "ElaContentDialog.h"
 
+#include "Pages/PageBase.h"
+
 class Simiru : public ElaWindow
 {
 	Q_OBJECT
@@ -17,4 +19,7 @@ private:
 	void initWindow();
 	void initEdgeLayout();
 	void initContent();
+
+private:
+	PageBase* base;
 };

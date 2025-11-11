@@ -4,14 +4,25 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Simiru.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Pages\PageBase.cpp">
+      <Filter>Pages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Simiru.qrc" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Simiru.h" />
+    <QtMoc Include="Pages\PageBase.h">
+      <Filter>Pages</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Pages">
+      <UniqueIdentifier>{e7a0e57d-6dfb-4e9d-ab31-6989163443b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
