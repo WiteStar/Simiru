@@ -16,19 +16,19 @@ PageBase::PageBase(const QString& title, const QString& subtitle, QWidget* paren
 	titleLayout->addStretch();
 	addCentralWidget(titleWidget, true, true, 0);
 
-	ElaText* subtitleText = new ElaText(this);
-	subtitleText->setTextPixelSize(12);
-	subtitleText->setText(subtitle);
+	ElaText* subtitleWidget = new ElaText(this);
+	subtitleWidget->setTextPixelSize(12);
+	subtitleWidget->setText(subtitle);
 
-	QWidget* subtitleWidget = new QWidget(this);
-	QVBoxLayout* subtitleLayout = new QVBoxLayout(subtitleWidget); 
-	subtitleLayout->setContentsMargins(2, 2, 0, 0);
-	subtitleLayout->addWidget(subtitleText);
-	setCustomWidget(subtitleWidget);
+	QWidget* contentWidget = new QWidget(this);
+	layout = new QVBoxLayout(contentWidget);
+	layout->setContentsMargins(2, 2, 0, 0);
+	layout->addWidget(subtitleWidget);
+	setCustomWidget(contentWidget);
 }
 
 PageBase::PageBase(QWidget* parent)
-	: ElaScrollPage(parent)
+	: ElaScrollPage(parent), layout(nullptr)
 {
 	if (parent != nullptr)
 		connect(eTheme, &ElaTheme::themeModeChanged, this, [&]() { update(); });

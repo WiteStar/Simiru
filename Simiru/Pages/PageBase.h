@@ -10,4 +10,7 @@ public:
 	PageBase(const QString& title, const QString& subtitle, QWidget* parent = nullptr);
 	PageBase(QWidget* parent = nullptr);
 	~PageBase();
+
+private:
+	QVBoxLayout* layout;
 };
