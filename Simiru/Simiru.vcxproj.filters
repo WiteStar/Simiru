@@ -19,6 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Simiru.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pages">

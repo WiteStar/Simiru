@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ElaScrollPage.h"
+#include "ElaSuggestBox.h"
 
 class PageBase : public ElaScrollPage
 {
@@ -11,6 +12,10 @@ public:
 	PageBase(QWidget* parent = nullptr);
 	~PageBase();
 
+	void addWidget(const QString& name, QWidget* widget);
+	inline ElaSuggestBox* getSuggestBox() { return suggestBox; }
+
 private:
 	QVBoxLayout* layout;
+	ElaSuggestBox* suggestBox;
 };

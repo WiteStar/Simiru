@@ -45,12 +45,14 @@ void Simiru::initWindow()
 		}
 	);
 
-	ElaSuggestBox* searchWidget = new ElaSuggestBox(this);
+	searchWidget = new ElaSuggestBox(this);
 	searchWidget->setPlaceholderText("Search");
 	searchWidget->setFixedHeight(32);
+	searchWidget->setEnabled(false);
+	searchWidget->setVisible(true);
 
 	QWidget* headWidget = new QWidget(this);
-	QHBoxLayout* headLayout = new QHBoxLayout(headWidget);
+	headLayout = new QHBoxLayout(headWidget);
 	headLayout->setContentsMargins(13, 15, 13, 6);
 	headLayout->addWidget(leftButton);
 	headLayout->addWidget(rightButton);
@@ -58,6 +60,8 @@ void Simiru::initWindow()
 	headLayout->addStretch();
 	setCentralCustomWidget(headWidget);
 	//================================ Set Central Widget Head ================================//
+
+	connect(this, &Simiru::navigationNodeClicked, this, &Simiru::slotUpdateSuggestionList);
 }
 
 void Simiru::initEdgeLayout()
@@ -68,4 +72,22 @@ void Simiru::initContent()
 {
 	base = new PageBase("TEST", "test", this);
 	addPageNode("HOME", base, ElaIconType::House);
+	base = new PageBase("TEST1", "test1", this);
+	addPageNode("HOME", base, ElaIconType::House);
+}
+
+void Simiru::slotUpdateSuggestionList(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey)
+{
+	if (keyToPage.contains(nodeKey) == false)
+		return;
+
+	PageBase* page = keyToPage[nodeKey];
+
+	searchWidget->setEnabled(false);
+	searchWidget->setVisible(false);
+	headLayout->removeWidget(searchWidget);
+	searchWidget = page->getSuggestBox();
+	headLayout->insertWidget(2, searchWidget);
+	searchWidget->setVisible(true);
+	searchWidget->setEnabled(true);
 }
