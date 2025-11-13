@@ -9,17 +9,14 @@ PageBase::PageBase(const QString& title, const QString& subtitle, QWidget* paren
 {
 	setWindowTitle(title);
 
-	QWidget* titleWidget = new QWidget(this);
+	QWidget* titleWidget = (QWidget*)contentLayout->parent();
 	titleWidget->setWindowTitle(title);
-	QVBoxLayout* titleLayout = new QVBoxLayout(titleWidget);
-	titleLayout->setContentsMargins(0, 0, 0, 0);
-	titleLayout->addStretch();
 	addCentralWidget(titleWidget, true, true, 0);
 
-	ElaText* subtitleWidget = new ElaText(this);
-	subtitleWidget->setTextPixelSize(12);
-	subtitleWidget->setText(subtitle);
-	layout->addWidget(subtitleWidget);
+	ElaText* subtitleText = new ElaText(this);
+	subtitleText->setTextPixelSize(14);
+	subtitleText->setText(subtitle);
+	customLayout->addWidget(subtitleText);
 }
 
 PageBase::PageBase(QWidget* parent)
@@ -36,9 +33,14 @@ PageBase::PageBase(QWidget* parent)
 	suggestBox->setVisible(false);
 
 	QWidget* contentWidget = new QWidget(this);
-	layout = new QVBoxLayout(contentWidget);
-	layout->setContentsMargins(2, 2, 0, 0);
-	setCustomWidget(contentWidget);
+	contentLayout = new QVBoxLayout(contentWidget);
+	contentLayout->setContentsMargins(0, 0, 0, 0);
+	contentLayout->addStretch();
+
+	QWidget* customWidget = new QWidget(this);
+	customLayout = new QVBoxLayout(customWidget);
+	customLayout->setContentsMargins(2, 3, 2, 6);
+	setCustomWidget(customWidget);
 }
 
 PageBase::~PageBase()
@@ -48,5 +50,5 @@ PageBase::~PageBase()
 void PageBase::addWidget(const QString& name, QWidget* widget)
 {
 	suggestBox->addSuggestion(name, { { "Widget", (uintptr_t)widget} });
-	layout->addWidget(widget);
+	contentLayout->addWidget(widget);
 }

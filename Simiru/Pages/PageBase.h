@@ -16,6 +16,7 @@ public:
 	inline ElaSuggestBox* getSuggestBox() { return suggestBox; }
 
 private:
-	QVBoxLayout* layout;
+	QVBoxLayout* contentLayout;
+	QVBoxLayout* customLayout;
 	ElaSuggestBox* suggestBox;
 };
