@@ -4,7 +4,6 @@
 #include "ElaText.h"
 #include "ElaToolButton.h"
 #include "ElaSuggestBox.h"
-#include "ElaScrollPageArea.h"
 #include "ElaNavigationRouter.h"
 
 Simiru::Simiru(QWidget* parent)
@@ -77,15 +76,11 @@ void Simiru::initContent()
 	base = new PageBase("TEST1", "test1", this);
 	addPageNode("HOME", base, ElaIconType::House);
 
-	int i = 0;
-	while (i < 100)
+	for (int i = 0; i < 100; i++)
 	{
-		ElaScrollPageArea* area = new ElaScrollPageArea(this);
-		QHBoxLayout* layout = new QHBoxLayout(area);
-		ElaText* widget = new ElaText(this);
-		widget->setText(QString("widget%1").arg(++i));
-		layout->addWidget(widget);
-		base->addWidget(QString("widget%1").arg(i), area);
+		ElaText* widget = new ElaText();
+		widget->setText(QString("widget%1").arg(i));
+		base->addWidget(QString("widget%1").arg(i), widget);
 	}
 }
 

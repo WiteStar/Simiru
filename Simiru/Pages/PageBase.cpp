@@ -3,6 +3,7 @@
 
 #include "ElaText.h"
 #include "ElaTheme.h"
+#include "ElaScrollPageArea.h"
 
 PageBase::PageBase(const QString& title, const QString& subtitle, QWidget* parent)
 	: PageBase(parent)
@@ -41,14 +42,38 @@ PageBase::PageBase(QWidget* parent)
 	customLayout = new QVBoxLayout(customWidget);
 	customLayout->setContentsMargins(2, 3, 2, 6);
 	setCustomWidget(customWidget);
+
+	connect(suggestBox, &ElaSuggestBox::suggestionClicked, this, &PageBase::slotNavigation);
 }
 
 PageBase::~PageBase()
 {
 }
 
+void PageBase::slotNavigation(QString suggestion, QVariantMap data)
+{
+	if (data["Widget"].isNull()) return;
+	QWidget* widget = (QWidget*)data["Widget"].value<uintptr_t>();
+	QScrollArea* area = (QScrollArea*)contentLayout->parent(/*widget*/)->parent(/*viewport*/)->parent(/*area*/);
+	area->ensureWidgetVisible(widget);
+}
+
+void PageBase::registerSuggestion(const QString& suggestion, void* widget)
+{
+	suggestBox->addSuggestion(suggestion, { { "Widget", (uintptr_t)widget} });
+}
+
+QHBoxLayout* PageBase::addGroup()
+{
+	ElaScrollPageArea* area = new ElaScrollPageArea(this);
+	QHBoxLayout* layout = new QHBoxLayout(area);
+	contentLayout->addWidget(area);
+	return layout;
+}
+
 void PageBase::addWidget(const QString& name, QWidget* widget)
 {
-	suggestBox->addSuggestion(name, { { "Widget", (uintptr_t)widget} });
-	contentLayout->addWidget(widget);
+	QHBoxLayout* group = addGroup();
+	registerSuggestion(name, group->parent());
+	group->addWidget(widget);
 }
