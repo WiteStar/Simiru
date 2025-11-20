@@ -16,9 +16,21 @@ struct FoundFile {
 
 void print_help() {
     std::cout << "Usage:\n"
-        "  scan -i <input file> [-all | -png -zip ...]\n"
-        "  file -i <input file> -o <out dir> [-all | -png ...]\n"
-        "  help\n\n";
+        "  scan -i <input_file> scan|extract [options]\n"
+        "Modes:\n"
+        "  scan            list possible embedded files and simple integrity checks\n"
+        "  extract         extract detected possible files (default smart mode)\n"
+        "Common options:\n"
+        "  -i <input>      input file absolute path (required)\n"
+        "  -o <output>     output folder absolute path (default ./out_scan)\n"
+        "  -all            consider all supported types\n"
+        "  -png -jpg -zip  pick specific types (can repeat)\n"
+        "  -smart          smart extraction (default)\n"
+        "  -offset         extract by offset: requires -s and -e or -s and -length\n"
+        "  -s <start>      start offset (decimal or 0xhex)\n"
+        "  -e <end>        end offset (decimal or 0xhex, inclusive)\n"
+        "  -length <len>   length in bytes (eg 1024 or 4K/2M)\n"
+        "  -help           show this help\n\n";
 }
 
 std::vector<uint8_t> read_file(const std::string& path) {
