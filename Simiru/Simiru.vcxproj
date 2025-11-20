@@ -144,6 +144,8 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Translator.cpp" />
+    <ClInclude Include="Translator.h" />
     <QtRcc Include="Simiru.qrc" />
     <QtMoc Include="Simiru.h" />
     <ClCompile Include="Pages\PageBase.cpp" />

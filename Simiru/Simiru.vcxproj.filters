@@ -7,6 +7,7 @@
     <ClCompile Include="Pages\PageBase.cpp">
       <Filter>Pages</Filter>
     </ClCompile>
+    <ClCompile Include="Translator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Simiru.qrc" />
@@ -20,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Simiru.hpp" />
+    <ClInclude Include="Translator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pages">
