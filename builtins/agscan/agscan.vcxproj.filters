@@ -21,9 +21,21 @@
     <ClCompile Include="signatures.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="crc_bruteforce.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fix.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="signatures.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fix.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="crc_bruteforce.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

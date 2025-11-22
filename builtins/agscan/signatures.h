@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <cstdint>
 
 struct Signature {
     std::string ext;                 // e.g. "png"
