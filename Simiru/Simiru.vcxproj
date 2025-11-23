@@ -144,7 +144,13 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Builder\BNBase.cpp" />
+    <ClCompile Include="Builder\BuildInfo.cpp" />
     <ClCompile Include="Translator.cpp" />
+    <ClInclude Include="Builder\BNBase.h" />
+    <ClInclude Include="Builder\BuildInfo.h" />
+    <ClInclude Include="Builder\BuildNode.h" />
+    <ClInclude Include="Builder\JsonUtils.h" />
     <ClInclude Include="Translator.h" />
     <QtRcc Include="Simiru.qrc" />
     <QtMoc Include="Simiru.h" />

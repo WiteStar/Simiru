@@ -8,6 +8,12 @@
       <Filter>Pages</Filter>
     </ClCompile>
     <ClCompile Include="Translator.cpp" />
+    <ClCompile Include="Builder\BuildInfo.cpp">
+      <Filter>Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="Builder\BNBase.cpp">
+      <Filter>Builder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Simiru.qrc" />
@@ -22,10 +28,25 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Simiru.hpp" />
     <ClInclude Include="Translator.h" />
+    <ClInclude Include="Builder\BuildInfo.h">
+      <Filter>Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Builder\BNBase.h">
+      <Filter>Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Builder\BuildNode.h">
+      <Filter>Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Builder\JsonUtils.h">
+      <Filter>Builder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Pages">
       <UniqueIdentifier>{e7a0e57d-6dfb-4e9d-ab31-6989163443b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Builder">
+      <UniqueIdentifier>{36ac55af-dfab-4e23-a297-d3c2fc593d34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
