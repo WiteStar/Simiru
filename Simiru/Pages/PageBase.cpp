@@ -36,7 +36,6 @@ PageBase::PageBase(QWidget* parent)
 	QWidget* contentWidget = new QWidget(this);
 	contentLayout = new QVBoxLayout(contentWidget);
 	contentLayout->setContentsMargins(0, 0, 0, 0);
-	contentLayout->addStretch();
 
 	QWidget* customWidget = new QWidget(this);
 	customLayout = new QVBoxLayout(customWidget);

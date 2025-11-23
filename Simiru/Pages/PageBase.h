@@ -16,6 +16,7 @@ public:
 
 	QHBoxLayout* addGroup();
 	void addWidget(const QString& name, QWidget* widget);
+	inline void addStretch() { contentLayout->addStretch(); }
 	inline ElaSuggestBox* getSuggestBox() { return suggestBox; }
 
 public slots:

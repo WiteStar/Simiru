@@ -7,6 +7,14 @@ bool BNBase::LoadJson(const QJsonObject& obj)
 	PARSE_STRING(name);
 	PARSE_STRING(arg);
 
+	isEnabled = false;
+	if (auto e = obj["enabled_by_default"]; e.isNull())
+		qInfo() << "enabled_by_default" << "is empty";
+	else if (e.isBool() == false)
+		qWarning() << "Wrong type for" << "enabled_by_default" << ": Bool is expected, but type is" << e.type();
+	else
+		isEnabled = e.toBool();
+
 	auto e = obj["suggestions"];
 	if (auto e = obj["suggestions"]; e.isNull())
 	{
@@ -30,5 +38,13 @@ bool BNBase::LoadJson(const QJsonObject& obj)
 			suggestions.emplace_back(ref.toString());
 		}
 	}
+	return true;
+}
+
+bool BNBase::SetupPage(PageBase* page)
+{
+	ElaSuggestBox* suggestBox = page->getSuggestBox();
+	for (const QString& suggestion : suggestions)
+		suggestBox->addSuggestion(suggestion);
 	return true;
 }

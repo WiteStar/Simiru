@@ -14,6 +14,9 @@
     <ClCompile Include="Builder\BNBase.cpp">
       <Filter>Builder</Filter>
     </ClCompile>
+    <ClCompile Include="Builder\BNText.cpp">
+      <Filter>Builder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Simiru.qrc" />
@@ -38,6 +41,9 @@
       <Filter>Builder</Filter>
     </ClInclude>
     <ClInclude Include="Builder\JsonUtils.h">
+      <Filter>Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Builder\BNText.h">
       <Filter>Builder</Filter>
     </ClInclude>
   </ItemGroup>
