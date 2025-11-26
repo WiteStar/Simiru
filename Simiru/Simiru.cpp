@@ -6,12 +6,26 @@
 #include "ElaSuggestBox.h"
 #include "ElaNavigationRouter.h"
 
+#include "Builder/BuildNode.h"
+
 Simiru::Simiru(QWidget* parent)
 	: ElaWindow(parent)
 {
 	initWindow();
 	initEdgeLayout();
 	initContent();
+
+	static BNText text;
+	text.name = "TEXT";
+	text.arg = "-text";
+	text.SetupPage(base);
+
+	static BNEdit edit;
+	edit.name = "EDIT";
+	edit.arg = "-edit";
+	edit.SetupPage(base);
+
+	base->addStretch();
 }
 
 Simiru::~Simiru()
@@ -75,13 +89,6 @@ void Simiru::initContent()
 	addPageNode("HOME", base, ElaIconType::House);
 	base = new PageBase("TEST1", "test1", this);
 	addPageNode("HOME", base, ElaIconType::House);
-
-	for (int i = 0; i < 100; i++)
-	{
-		ElaText* widget = new ElaText();
-		widget->setText(QString("widget%1").arg(i));
-		base->addWidget(QString("widget%1").arg(i), widget);
-	}
 }
 
 void Simiru::slotUpdateSuggestionList(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey)

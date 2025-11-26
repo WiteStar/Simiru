@@ -53,7 +53,7 @@ bool BuildInfo::ParseJson(const QJsonDocument& doc)
 
 			BNBase* node;
 			if (type == "text") node = new BNText();
-			else if (type == "edit") node = new BNText();
+			else if (type == "edit") node = new BNEdit();
 			else if (type == "radio") node = new BNText();
 			else if (type == "combo") node = new BNText();
 			else if (type == "multicombo") node = new BNText();
