@@ -1,15 +1,24 @@
 #pragma once
 #include <QJsonObject>
+#include "ElaToggleSwitch.h"
 #include "Pages/PageBase.h"
 
-struct BNBase
+class BNBase
 {
+public:
+	virtual bool LoadJson(const QJsonObject& obj);
+	virtual bool SetupPage(PageBase* page) = 0;
+	virtual QString GetArg() = 0;
+
+protected:
+	QHBoxLayout* StartPage(PageBase* page);
+	void FinishPage(QHBoxLayout* layout);
+
+protected:
 	QString name;
 	QVector<QString> suggestions;
 	QString arg;
-	bool isEnabled;
 
-	virtual bool LoadJson(const QJsonObject& obj);
-	virtual bool SetupPage(PageBase* page);
-	virtual QString GetArg() = 0;
+	ElaToggleSwitch* enabler;
+	bool isEnabled;
 };

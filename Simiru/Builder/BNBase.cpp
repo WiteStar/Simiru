@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "BNBase.h"
+
+#include "ElaText.h"
 #include "JsonUtils.h"
 
 bool BNBase::LoadJson(const QJsonObject& obj)
@@ -41,10 +43,29 @@ bool BNBase::LoadJson(const QJsonObject& obj)
 	return true;
 }
 
-bool BNBase::SetupPage(PageBase* page)
+QHBoxLayout* BNBase::StartPage(PageBase* page)
 {
 	ElaSuggestBox* suggestBox = page->getSuggestBox();
 	for (const QString& suggestion : suggestions)
 		suggestBox->addSuggestion(suggestion);
-	return true;
+
+	ElaText* text = new ElaText();
+	text->setTextPixelSize(16);
+	text->setText(name);
+
+	enabler = new ElaToggleSwitch();
+	QObject::connect(enabler, &ElaToggleSwitch::toggled, [&](bool checked) { isEnabled = checked; });
+	enabler->setIsToggled(isEnabled);
+
+	QHBoxLayout* layout = page->addGroup();
+	layout->addWidget(text);
+	layout->addSpacing(10);
+	return layout;
+}
+
+void BNBase::FinishPage(QHBoxLayout* layout)
+{
+	layout->addStretch();
+	layout->addWidget(enabler);
+	layout->addSpacing(10);
 }

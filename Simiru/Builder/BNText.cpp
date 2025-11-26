@@ -14,22 +14,8 @@ bool BNText::LoadJson(const QJsonObject& obj)
 
 bool BNText::SetupPage(PageBase* page)
 {
-	if (BNBase::SetupPage(page) == false)
-		return false;
-
-	ElaText* text = new ElaText();
-	text->setTextPixelSize(16);
-	text->setText(name);
-
-	ElaToggleSwitch* enabler = new ElaToggleSwitch();
-	QObject::connect(enabler, &ElaToggleSwitch::toggled, [&](bool checked) { isEnabled = checked; });
-	enabler->setIsToggled(isEnabled);
-
-	QHBoxLayout* layout = page->addGroup();
-	layout->addWidget(text);
-	layout->addStretch();
-	layout->addWidget(enabler);
-	layout->addSpacing(10);
+	QHBoxLayout* layout = StartPage(page);
+	FinishPage(layout);
 	return true;
 }
 

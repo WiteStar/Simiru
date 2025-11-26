@@ -2,11 +2,13 @@
 #include "BNBase.h"
 #include "ElaLineEdit.h"
 
-struct BNEdit : public BNBase
+class BNEdit : public BNBase
 {
-	ElaLineEdit* line;
-
+public:
 	virtual bool LoadJson(const QJsonObject& obj) override;
-	virtual bool SetupPage(PageBase* page);
-	virtual QString GetArg();
+	virtual bool SetupPage(PageBase* page) override final;
+	virtual QString GetArg() override final;
+
+private:
+	ElaLineEdit* line;
 };

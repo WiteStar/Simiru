@@ -16,13 +16,9 @@ Simiru::Simiru(QWidget* parent)
 	initContent();
 
 	static BNText text;
-	text.name = "TEXT";
-	text.arg = "-text";
 	text.SetupPage(base);
 
 	static BNEdit edit;
-	edit.name = "EDIT";
-	edit.arg = "-edit";
 	edit.SetupPage(base);
 
 	base->addStretch();

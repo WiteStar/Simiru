@@ -14,27 +14,14 @@ bool BNEdit::LoadJson(const QJsonObject& obj)
 
 bool BNEdit::SetupPage(PageBase* page)
 {
-	if (BNBase::SetupPage(page) == false)
-		return false;
-
-	ElaText* text = new ElaText();
-	text->setTextPixelSize(16);
-	text->setText(name);
+	QHBoxLayout* layout = StartPage(page);
 
 	line = new ElaLineEdit();
 	line->setEnabled(isEnabled);
+	QObject::connect(enabler, &ElaToggleSwitch::toggled, [&](bool checked) { line->setEnabled(checked); });
 
-	ElaToggleSwitch* enabler = new ElaToggleSwitch();
-	QObject::connect(enabler, &ElaToggleSwitch::toggled, [&](bool checked) { isEnabled = checked; line->setEnabled(checked); });
-	enabler->setIsToggled(isEnabled);
-
-	QHBoxLayout* layout = page->addGroup();
-	layout->addWidget(text);
-	layout->addSpacing(10);
 	layout->addWidget(line);
-	layout->addStretch();
-	layout->addWidget(enabler);
-	layout->addSpacing(10);
+	FinishPage(layout);
 	return true;
 }
 

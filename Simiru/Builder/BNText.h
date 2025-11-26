@@ -1,9 +1,10 @@
 #pragma once
 #include "BNBase.h"
 
-struct BNText : public BNBase
+class BNText : public BNBase
 {
+public:
 	virtual bool LoadJson(const QJsonObject& obj) override;
-	virtual bool SetupPage(PageBase* page);
-	virtual QString GetArg();
+	virtual bool SetupPage(PageBase* page) override final;
+	virtual QString GetArg() override final;
 };
