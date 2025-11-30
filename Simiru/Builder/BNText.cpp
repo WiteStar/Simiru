@@ -14,8 +14,7 @@ bool BNText::LoadJson(const QJsonObject& obj)
 
 bool BNText::SetupPage(PageBase* page)
 {
-	QHBoxLayout* layout = StartPage(page);
-	FinishPage(layout);
+	StartPage(page);
 	return true;
 }
 

@@ -15,13 +15,13 @@ bool BNEdit::LoadJson(const QJsonObject& obj)
 bool BNEdit::SetupPage(PageBase* page)
 {
 	QHBoxLayout* layout = StartPage(page);
+	QWidget* widget = (QWidget*)layout->parent();
 
-	line = new ElaLineEdit();
+	line = new ElaLineEdit(widget);
 	line->setEnabled(isEnabled);
-	QObject::connect(enabler, &ElaToggleSwitch::toggled, [&](bool checked) { line->setEnabled(checked); });
 
+	QObject::connect(enabler, &ElaToggleSwitch::toggled, [&](bool checked) { line->setEnabled(checked); });
 	layout->addWidget(line);
-	FinishPage(layout);
 	return true;
 }
 

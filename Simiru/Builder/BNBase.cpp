@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "BNBase.h"
 
+#include "ElaScrollArea.h"
+#include "ElaScrollBar.h"
 #include "ElaText.h"
 #include "JsonUtils.h"
 
@@ -49,23 +51,40 @@ QHBoxLayout* BNBase::StartPage(PageBase* page)
 	for (const QString& suggestion : suggestions)
 		suggestBox->addSuggestion(suggestion);
 
-	ElaText* text = new ElaText();
+	QHBoxLayout* layout = page->addGroup();
+	QWidget* widget = (QWidget*)layout->parent();
+
+	ElaScrollArea* scrollArea = new ElaScrollArea(widget);
+	scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	scrollArea->setIsAnimation(Qt::Horizontal, true);
+	scrollArea->setIsOverShoot(Qt::Horizontal, true);
+	scrollArea->setMouseTracking(true);
+	scrollArea->setWidgetResizable(1);
+	scrollArea->setIsGrabGesture(1);
+
+	ElaScrollBar* scrollBar = new ElaScrollBar(scrollArea->horizontalScrollBar(), scrollArea);
+	scrollBar->setIsAnimation(true);
+
+	QWidget* scrollWidget = new QWidget(scrollArea);
+	scrollWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+	scrollWidget->setStyleSheet("background-color:transparent;");
+	scrollArea->setWidget(scrollWidget);
+
+	ElaText* text = new ElaText(scrollWidget);
 	text->setTextPixelSize(16);
 	text->setText(name);
 
-	enabler = new ElaToggleSwitch();
+	QHBoxLayout* scrollLayout = new QHBoxLayout(scrollWidget);
+	scrollLayout->addWidget(text);
+	scrollLayout->addSpacing(10);
+
+	enabler = new ElaToggleSwitch(widget);
 	QObject::connect(enabler, &ElaToggleSwitch::toggled, [&](bool checked) { isEnabled = checked; });
 	enabler->setIsToggled(isEnabled);
 
-	QHBoxLayout* layout = page->addGroup();
-	layout->addWidget(text);
-	layout->addSpacing(10);
-	return layout;
-}
-
-void BNBase::FinishPage(QHBoxLayout* layout)
-{
+	layout->addWidget(scrollArea);
 	layout->addStretch();
 	layout->addWidget(enabler);
 	layout->addSpacing(10);
+	return scrollLayout;
 }

@@ -12,7 +12,6 @@ public:
 
 protected:
 	QHBoxLayout* StartPage(PageBase* page);
-	void FinishPage(QHBoxLayout* layout);
 
 protected:
 	QString name;
