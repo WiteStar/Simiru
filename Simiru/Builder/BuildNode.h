@@ -3,3 +3,4 @@
 
 #include "BNText.h"
 #include "BNEdit.h"
+#include "BNSpin.h"

@@ -21,6 +21,9 @@ Simiru::Simiru(QWidget* parent)
 	static BNEdit edit;
 	edit.SetupPage(base);
 
+	static BNSpin spin;
+	spin.SetupPage(base);
+
 	base->addStretch();
 }
 

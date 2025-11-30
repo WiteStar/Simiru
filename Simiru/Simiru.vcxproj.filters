@@ -20,6 +20,9 @@
     <ClCompile Include="Builder\BNEdit.cpp">
       <Filter>Builder</Filter>
     </ClCompile>
+    <ClCompile Include="Builder\BNSpin.cpp">
+      <Filter>Builder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Simiru.qrc" />
@@ -50,6 +53,9 @@
       <Filter>Builder</Filter>
     </ClInclude>
     <ClInclude Include="Builder\BNEdit.h">
+      <Filter>Builder</Filter>
+    </ClInclude>
+    <ClInclude Include="Builder\BNSpin.h">
       <Filter>Builder</Filter>
     </ClInclude>
   </ItemGroup>

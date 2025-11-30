@@ -11,13 +11,8 @@ bool BNBase::LoadJson(const QJsonObject& obj)
 	PARSE_STRING(name);
 	PARSE_STRING(arg);
 
-	isEnabled = false;
-	if (auto e = obj["enabled_by_default"]; e.isNull())
-		qInfo() << "enabled_by_default" << "is empty";
-	else if (e.isBool() == false)
-		qWarning() << "Wrong type for" << "enabled_by_default" << ": Bool is expected, but type is" << e.type();
-	else
-		isEnabled = e.toBool();
+	enabled_by_default = false;
+	PARSE_BOOL(enabled_by_default);
 
 	auto e = obj["suggestions"];
 	if (auto e = obj["suggestions"]; e.isNull())
@@ -83,7 +78,6 @@ QHBoxLayout* BNBase::StartPage(PageBase* page)
 	enabler->setIsToggled(isEnabled);
 
 	layout->addWidget(scrollArea);
-	layout->addStretch();
 	layout->addWidget(enabler);
 	layout->addSpacing(10);
 	return scrollLayout;

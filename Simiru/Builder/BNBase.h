@@ -19,5 +19,9 @@ protected:
 	QString arg;
 
 	ElaToggleSwitch* enabler;
-	bool isEnabled;
+	union
+	{
+		bool enabled_by_default;
+		bool isEnabled;
+	};
 };

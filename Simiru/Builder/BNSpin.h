@@ -1,8 +1,10 @@
 #pragma once
 #include "BNBase.h"
-#include "ElaLineEdit.h"
 
-class BNEdit : public BNBase
+#include "ElaSpinBox.h"
+
+// TODO: double and date spin
+class BNSpin : public BNBase
 {
 public:
 	virtual bool LoadJson(const QJsonObject& obj) override;
@@ -10,6 +12,11 @@ public:
 	virtual QString GetArg() override final;
 
 private:
-	ElaLineEdit* line;
-	QString default_string;
+	ElaSpinBox* spin;
+	int min, max;
+	union
+	{
+		int default_value;
+		int value;
+	};
 };

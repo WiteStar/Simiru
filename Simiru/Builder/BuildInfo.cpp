@@ -54,11 +54,11 @@ bool BuildInfo::ParseJson(const QJsonDocument& doc)
 			BNBase* node;
 			if (type == "text") node = new BNText();
 			else if (type == "edit") node = new BNEdit();
+			else if (type == "spin") node = new BNSpin();
 			else if (type == "radio") node = new BNText();
 			else if (type == "combo") node = new BNText();
-			else if (type == "multicombo") node = new BNText();
 			else if (type == "slider") node = new BNText();
-			else if (type == "spin") node = new BNText();
+			else if (type == "multicombo") node = new BNText();
 			else { qWarning() << "Unknown type:" << type; continue; }
 
 			if (node->LoadJson(obj))
